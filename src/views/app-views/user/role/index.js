@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import {
-  Breadcrumb,
   Button,
   Row,
   Col,
@@ -20,16 +19,10 @@ const RoleManagement = () => {
   const [newRolePermissions, setNewRolePermissions] = useState([]);
   const [updatedPermissions, setUpdatedPermissions] = useState({});
   const formRef = useRef(null);
-  const [pagePermission, setPagePermission] = useState(true);
+  // const [pagePermission, setPagePermission] = useState(true);
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("userDetails"));
-    // const permissions = user?.permissions || [];
-    // const hasDashboardPermission = permissions.some(
-    //   (permission) =>
-    //     permission.module.name === "System Users" && permission.can_view
-    // );
-    // setPagePermission(hasDashboardPermission);
+    // const user = JSON.parse(localStorage.getItem("userDetails"));
     const getRolesAndPermissions = async () => {
       try {
         const response = await API("user/roles/list/", "GET", {});
@@ -337,9 +330,9 @@ const RoleManagement = () => {
   ];
   return (
     <>
-      {!pagePermission ? (
+      {/* {!pagePermission ? (
         <h1>You do not have permission to view this page</h1>
-      ) : (
+      ) : ( */}
         <div className="organization">
           <Row justify="space-between" style={{ marginBottom: "25px" }}>
             <Col></Col>
@@ -401,7 +394,7 @@ const RoleManagement = () => {
             </Form>
           </Modal>
         </div>
-      )}
+      {/* )} */}
     </>
   );
 };

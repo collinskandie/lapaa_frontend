@@ -51,7 +51,7 @@ export const YouthDashboard = () => {
         <Col span={8}>
           <Card>
             <Statistic
-              title="Top Registration County"
+              title="Top Registration Ward"
               value={summary.top_region}
               valueStyle={{ color: COLORS[0], fontWeight: 600 }}
             />
@@ -86,7 +86,7 @@ export const YouthDashboard = () => {
       <Row gutter={16} className="mt-4">
         <Col xs={24} sm={24} md={24} lg={16}>
           <RegiondataWidget
-            title="Youth Registrations by County"
+            title="Youth Registrations by Ward"
             data={regionData}
           />
 

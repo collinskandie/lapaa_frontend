@@ -19,6 +19,8 @@ const YouthRegistration = () => {
     const next = () => setCurrent(current + 1)
     const prev = () => setCurrent(current - 1)
 
+    // Ward, location, sub-location, Village
+
     const onFinish = async (values) => {
         try {
             setLoading(true)
@@ -35,8 +37,10 @@ const YouthRegistration = () => {
                 sub_county: values.subCounty || '',
                 ward: values.ward || '',
                 village: values.village || 'N/A',
-                gps_lat: values.gps_lat ? parseFloat(values.gps_lat) : null,
-                gps_long: values.gps_long ? parseFloat(values.gps_long) : null,
+                location: values.location || 'N/A',
+                sub_location: values.subLocation || 'N/A',
+                // gps_lat: values.gps_lat ? parseFloat(values.gps_lat) : null,
+                // gps_long: values.gps_long ? parseFloat(values.gps_long) : null,
 
                 education: [
                     {
@@ -154,6 +158,16 @@ const YouthRegistration = () => {
                         </Form.Item>
                     </Col>
                     <Col span={12}>
+                        <Form.Item name="location" label="Location" rules={[{required: true}]}>
+                            <Input placeholder="e.g. -1.28333" />
+                        </Form.Item>
+                    </Col>
+                    <Col span={12}>
+                        <Form.Item name="subLocation" label="Sub-Location" rules={[{required: true}]}>
+                            <Input placeholder="e.g. -1.28333" />
+                        </Form.Item>
+                    </Col>
+                    <Col span={12}>
                         <Form.Item name="ward" label="Ward" rules={[{ required: true }]}>
                             <Input placeholder="Enter ward" />
                         </Form.Item>
@@ -163,11 +177,7 @@ const YouthRegistration = () => {
                             <Input placeholder="Enter village" />
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
-                        <Form.Item name="gps_lat" label="GPS Latitude" rules={[{required: true}]}>
-                            <Input placeholder="e.g. -1.28333" />
-                        </Form.Item>
-                    </Col>
+                    
                     <Col span={12}>
                         <Form.Item name="gps_long" label="GPS Longitude" rules={[{required: true}]}>
                             <Input placeholder="e.g. 36.81667" />

@@ -4,7 +4,6 @@ import { SearchOutlined, PlusOutlined } from "@ant-design/icons";
 import API from "services/Api";
 import UserModal from "./userModal";
 import moment from "moment";
-
 import { useNavigate } from "react-router-dom";
 const baseUrl = process.env.REACT_APP_LIVE_URL;
 
@@ -45,11 +44,11 @@ const User = () => {
       ),
     },
   ];
-  const [pagePermission, setPagePermission] = useState(true);
+  // const [pagePermission, setPagePermission] = useState(true);
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("userDetails"));
-    const permissions = user?.permissions || [];
+    // const user = JSON.parse(localStorage.getItem("userDetails"));
+    // const permissions = user?.permissions || [];
     // const hasDashboardPermission = permissions.some(
     //   (permission) =>
     //     permission.module.name === "System Users" && permission.can_view
@@ -150,41 +149,39 @@ const User = () => {
 
   return (
     <>
-      {!pagePermission ? (
+      {/* {!pagePermission ? (
         <h1>You do not have permission to view this page</h1>
-      ) : (
-        <div className="users">
-          <Row justify="space-between" style={{ marginBottom: "25px" }}>
-            <Col>
-              <Input
-                placeholder="Search User"
-                onChange={handleSearchChange}
-                prefix={<SearchOutlined />}
-                style={{ width: 200 }}
-              />
-            </Col>
-            <Col>
-              <Button
-                type="primary"
-                icon={<PlusOutlined />}
-                onClick={showModal}
-              >
-                Add User
-              </Button>
-            </Col>
-          </Row>
-
-          <Table dataSource={filteredeUsers} columns={columns} rowKey="id" />
-
-          <UserModal
-            visible={isModalVisible}
-            onCancel={handleCancel}
-            onOk={handleOk}
-            rolesData={rolesData}
-            ref={formRef}
-          />
-        </div>
-      )}
+      ) : ( */}
+      <div className="users">
+        <Row justify="space-between" style={{ marginBottom: "25px" }}>
+          <Col>
+            <Input
+              placeholder="Search User"
+              onChange={handleSearchChange}
+              prefix={<SearchOutlined />}
+              style={{ width: 200 }}
+            />
+          </Col>
+          <Col>
+            <Button
+              type="primary"
+              icon={<PlusOutlined />}
+              onClick={showModal}
+            >
+              Add User
+            </Button>
+          </Col>
+        </Row>
+        <Table dataSource={filteredeUsers} columns={columns} rowKey="id" />
+        <UserModal
+          visible={isModalVisible}
+          onCancel={handleCancel}
+          onOk={handleOk}
+          rolesData={rolesData}
+          ref={formRef}
+        />
+      </div>
+      {/* )} */}
     </>
   );
 };
