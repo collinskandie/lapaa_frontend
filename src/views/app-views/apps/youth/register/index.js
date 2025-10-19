@@ -158,28 +158,29 @@ const YouthRegistration = () => {
                         </Form.Item>
                     </Col>
                     <Col span={12}>
-                        <Form.Item name="location" label="Location" rules={[{required: true}]}>
-                            <Input placeholder="e.g. -1.28333" />
-                        </Form.Item>
-                    </Col>
-                    <Col span={12}>
-                        <Form.Item name="subLocation" label="Sub-Location" rules={[{required: true}]}>
-                            <Input placeholder="e.g. -1.28333" />
-                        </Form.Item>
-                    </Col>
-                    <Col span={12}>
                         <Form.Item name="ward" label="Ward" rules={[{ required: true }]}>
                             <Input placeholder="Enter ward" />
                         </Form.Item>
                     </Col>
                     <Col span={12}>
-                        <Form.Item name="village" label="Village" rules={[{required: true}]}>
+                        <Form.Item name="location" label="Location" rules={[{ required: true }]}>
+                            <Input placeholder="e.g. -1.28333" />
+                        </Form.Item>
+                    </Col>
+                    <Col span={12}>
+                        <Form.Item name="subLocation" label="Sub-Location" rules={[{ required: true }]}>
+                            <Input placeholder="e.g. -1.28333" />
+                        </Form.Item>
+                    </Col>
+
+                    <Col span={12}>
+                        <Form.Item name="village" label="Village" rules={[{ required: true }]}>
                             <Input placeholder="Enter village" />
                         </Form.Item>
                     </Col>
-                    
+
                     <Col span={12}>
-                        <Form.Item name="gps_long" label="GPS Longitude" rules={[{required: true}]}>
+                        <Form.Item name="gps_long" label="GPS Longitude" rules={[{ required: true }]}>
                             <Input placeholder="e.g. 36.81667" />
                         </Form.Item>
                     </Col>
