@@ -1,0 +1,14 @@
+{
+	"home": "Home",
+	"sidenav.dashboard": "Dashboard",
+	"sidenav.dashboard.analytic": "Dashboard",
+	"sidenav.apps": "Apps",
+	"sidenav.settings": "Settings",
+	"sidenav.apps.youth.list": "Youth List",
+	"sidenav.apps.companies.list": "Companies List",
+	"sidenav.apps.youth.register": "Register Youth",
+	"sidenav.usermanagement": "User Management",
+	"sidenav.usermangement.systemusers": "System Users",
+	"sidenav.usermangement.systemusers.rolemanagement": "Role Management",
+	"sidenav.usermanagement.userprofile": "User Profile"
+}
