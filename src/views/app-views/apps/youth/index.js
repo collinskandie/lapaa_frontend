@@ -55,8 +55,29 @@ const YouthList = () => {
 
     const deleteItem = (id) => {
         const updated = list.filter(elm => elm.id !== id)
-        setList(updated)
-        setFilteredList(updated)
+        Modal.confirm({
+            title: 'Delete Youth',
+            content: 'Are you sure you want to delete this youth record?',
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk: () => confirmDelete(id, updated),
+        })
+    }
+
+    const confirmDelete = (id, updated) => {
+        API(`/youths/${id}/`, 'DELETE', [])
+            .then(() => {
+                setList(updated)
+                setFilteredList(updated)
+            })
+            .catch(error => {
+                console.error('Error deleting youth:', error)
+                Modal.error({
+                    title: 'Error',
+                    content: 'Failed to delete the youth record. Please try again.',
+                })
+            })
     }
 
     const columns = [
