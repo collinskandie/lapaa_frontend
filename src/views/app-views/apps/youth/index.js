@@ -96,24 +96,7 @@ const YouthList = () => {
             dataIndex: "ward",
             key: "ward",
         },
-        {
-            title: "Status",
-            dataIndex: "status",
-            key: "status",
-            render: (status) => (
-                <Tag
-                    color={
-                        status === "Active"
-                            ? "green"
-                            : status === "Pending"
-                                ? "gold"
-                                : "red"
-                    }
-                >
-                    {status}
-                </Tag>
-            ),
-        },
+    
         {
             title: "Actions",
             key: "actions",
