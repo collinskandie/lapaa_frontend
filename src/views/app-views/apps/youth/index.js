@@ -101,11 +101,11 @@ const YouthList = () => {
             render: (_, record) => {
                 const menu = (
                     <Menu>
-                        <Menu.Item key="view">
+                        <Menu.Item key="view" onClick={() => navigate(`${APP_PREFIX_PATH}/apps/youth/view/${record.id}`)}>
                             <EyeOutlined />
                             <span className="ml-2">View Details</span>
                         </Menu.Item>
-                        <Menu.Item key="edit">
+                        <Menu.Item key="edit" onClick={() => navigate(`${APP_PREFIX_PATH}/apps/youth/edit/${record.id}`)}>
                             <EditOutlined />
                             <span className="ml-2">Edit</span>
                         </Menu.Item>
