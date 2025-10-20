@@ -126,10 +126,10 @@ const YouthList = () => {
                             <EyeOutlined />
                             <span className="ml-2">View Details</span>
                         </Menu.Item>
-                        <Menu.Item key="edit" onClick={() => navigate(`${APP_PREFIX_PATH}/apps/youth/edit/${record.id}`)}>
+                        {/* <Menu.Item key="edit" onClick={() => navigate(`${APP_PREFIX_PATH}/apps/youth/edit/${record.id}`)}>
                             <EditOutlined />
                             <span className="ml-2">Edit</span>
-                        </Menu.Item>
+                        </Menu.Item> */}
                         <Menu.Divider />
                         <Menu.Item key="delete" onClick={() => deleteItem(record.id)}>
                             <DeleteOutlined />
