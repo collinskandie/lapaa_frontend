@@ -1,64 +1,62 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Tag, Button, Card, Tooltip, Avatar, Menu, Dropdown, Modal, Form, Input, Select, InputNumber } from 'antd'
 import {
-    EyeOutlined,
-    EditOutlined,
-    DeleteOutlined,
-    PlusOutlined,
-    UserOutlined,
-    MoreOutlined
+    Table, Tag, Button, Card, Tooltip, Avatar, Menu, Dropdown, Modal,
+    Form, Input, Select, InputNumber
+} from 'antd'
+import {
+    EyeOutlined, EditOutlined, DeleteOutlined, PlusOutlined,
+    UserOutlined, MoreOutlined
 } from '@ant-design/icons'
 import PageHeaderAlt from 'components/layout-components/PageHeaderAlt'
 import Flex from 'components/shared-components/Flex'
 import { useNavigate } from 'react-router-dom'
 import { APP_PREFIX_PATH } from 'configs/AppConfig'
-import dayjs from "dayjs"; // to calculate age easily
-import API from "services/Api";
+import dayjs from "dayjs"
+import API from "services/Api"
+
+const { Search } = Input
 
 const YouthList = () => {
     const [list, setList] = useState([])
+    const [filteredList, setFilteredList] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [searchText, setSearchText] = useState('')
     const [isModalVisible, setIsModalVisible] = useState(false)
     const [form] = Form.useForm()
-
     const navigate = useNavigate()
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchYouths = async () => {
             try {
-                setLoading(true);
-                const response = await API('/youths/', 'GET', []);
-                console.log('Fetched youths:', response.data.results);
-                setList(response.data?.results || []);
+                setLoading(true)
+                const response = await API('/youths/', 'GET', [])
+                const results = response.data?.results || []
+                setList(results)
+                setFilteredList(results)
             } catch (error) {
-                console.error('Error fetching youths:', error);
+                console.error('Error fetching youths:', error)
             } finally {
-                setLoading(false);
+                setLoading(false)
             }
-        };
-        fetchYouths();
-    }, []);
+        }
+        fetchYouths()
+    }, [])
 
-
-    const showModal = () => setIsModalVisible(true)
-    const handleCancel = () => {
-        setIsModalVisible(false)
-        form.resetFields()
-    }
-
-    const handleAddYouth = () => {
-        form.validateFields().then(values => {
-            const newYouth = {
-                id: Date.now(),
-                ...values
-            }
-            setList([...list, newYouth])
-            handleCancel()
-        })
+    const handleSearch = (value) => {
+        setSearchText(value)
+        const filtered = list.filter((item) =>
+            item.full_name?.toLowerCase().includes(value.toLowerCase()) ||
+            item.national_id?.toString().includes(value) ||
+            item.ward?.toLowerCase().includes(value.toLowerCase()) ||
+            item.gender?.toLowerCase().includes(value.toLowerCase())
+        )
+        setFilteredList(filtered)
     }
 
     const deleteItem = (id) => {
-        setList(list.filter(elm => elm.id !== id))
+        const updated = list.filter(elm => elm.id !== id)
+        setList(updated)
+        setFilteredList(updated)
     }
 
     const columns = [
@@ -87,8 +85,8 @@ const YouthList = () => {
             render: (_, record) => {
                 const age = record.date_of_birth
                     ? dayjs().diff(dayjs(record.date_of_birth), "year")
-                    : "N/A";
-                return age;
+                    : "N/A"
+                return age
             },
         },
         {
@@ -96,7 +94,6 @@ const YouthList = () => {
             dataIndex: "ward",
             key: "ward",
         },
-    
         {
             title: "Actions",
             key: "actions",
@@ -118,21 +115,18 @@ const YouthList = () => {
                             <span className="ml-2">Delete</span>
                         </Menu.Item>
                     </Menu>
-                );
+                )
 
                 return (
                     <Dropdown overlay={menu} trigger={["click"]}>
                         <Button icon={<MoreOutlined />} />
                     </Dropdown>
-                );
+                )
             },
         },
-    ];
+    ]
 
-    const openRegisterform = () => {
-        // showModal()
-        navigate(`${APP_PREFIX_PATH}/apps/youth/register`)
-    }
+    const openRegisterform = () => navigate(`${APP_PREFIX_PATH}/apps/youth/register`)
 
     return (
         <>
@@ -147,16 +141,27 @@ const YouthList = () => {
                     </Flex>
                 </div>
             </PageHeaderAlt>
+
             <Card>
                 <div className="container my-4">
+                    <Flex justifyContent="space-between" alignItems="center" className="mb-3">
+                        <Search
+                            placeholder="Search by name, ID, ward, or gender"
+                            allowClear
+                            onSearch={handleSearch}
+                            onChange={(e) => handleSearch(e.target.value)}
+                            style={{ maxWidth: 300 }}
+                            value={searchText}
+                        />
+                    </Flex>
+
                     <Table
                         columns={columns}
-                        dataSource={list}
+                        dataSource={filteredList}
                         rowKey="id"
                         loading={loading}
                         pagination={{ pageSize: 50 }}
                     />
-
                 </div>
             </Card>
         </>
