@@ -163,15 +163,15 @@ export const LoginForm = (props) => {
           </Col>
         </Row>
         {/* Logo Section */}
-        <div className="text-center mt-4">
-          <p className="mt-2">Powered by Syknown</p>
+        {/* <div className="text-center mt-4">
+          <p className="mt-2">Powe</p>
           <img
             src="/img/syknownlogo.png"
             alt="Logo"
             style={{ width: "100px" }}
             onClick={() => navigate("https://syknown.tech")}
           />
-        </div>
+        </div> */}
       </Form>
     </>
   );
