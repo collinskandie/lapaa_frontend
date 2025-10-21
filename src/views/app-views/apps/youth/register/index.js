@@ -178,12 +178,6 @@ const YouthRegistration = () => {
                             <Input placeholder="Enter village" />
                         </Form.Item>
                     </Col>
-
-                    <Col span={12}>
-                        <Form.Item name="gps_long" label="GPS Longitude" rules={[{ required: true }]}>
-                            <Input placeholder="e.g. 36.81667" />
-                        </Form.Item>
-                    </Col>
                 </Row>
             ),
         },
