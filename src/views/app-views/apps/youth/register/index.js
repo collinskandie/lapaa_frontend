@@ -192,15 +192,25 @@ const YouthRegistration = () => {
             content: (
                 <Row gutter={16}>
                     <Col span={12}>
-                        <Form.Item name="educationLevel" label="Highest Education Level" rules={[{ required: true }]}>
+                        <Form.Item
+                            name="educationLevel"
+                            label="Highest Education Level"
+                            rules={[{ required: true }]}
+                        >
                             <Select placeholder="Select level">
-                                <Option value="Primary">Primary</Option>
-                                <Option value="Secondary">Secondary</Option>
+                                <Option value="Pre-Primary">Pre-Primary</Option>
+                                <Option value="Primary">Primary (KCPE)</Option>
+                                <Option value="Secondary">Secondary (KCSE)</Option>
+                                <Option value="Artisan">Artisan / Craft Certificate</Option>
+                                <Option value="Certificate">Certificate (TVET / College)</Option>
                                 <Option value="Diploma">Diploma</Option>
-                                <Option value="Degree">Degree</Option>
+                                <Option value="Degree">Degree (Undergraduate)</Option>
+                                <Option value="Postgraduate Diploma">Postgraduate Diploma</Option>
                                 <Option value="Masters">Masters</Option>
+                                <Option value="PhD">PhD / Doctorate</Option>
                             </Select>
                         </Form.Item>
+
                     </Col>
                     <Col span={12}>
                         <Form.Item name="fieldOfStudy" label="Field of Study" rules={[{ required: true }]}>
