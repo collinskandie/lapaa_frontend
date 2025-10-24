@@ -33,14 +33,6 @@ const YouthList = () => {
         }
     }, [name]);
 
-    useEffect(() => {
-        if (searchText) {
-            handleSearch(searchText);
-        }
-    }, [searchText]);
-
-
-
 
     useEffect(() => {
         const fetchYouths = async () => {
@@ -103,6 +95,12 @@ const YouthList = () => {
 
         setFilteredList(filtered)
     }
+
+    useEffect(() => {
+        if (searchText) {
+            handleSearch(searchText);
+        }
+    }, [searchText]);
 
 
     const deleteItem = (id) => {

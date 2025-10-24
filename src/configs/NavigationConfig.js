@@ -72,6 +72,14 @@ const appsNavTree = [{
       breadcrumb: false,
       submenu: []
     },
+    {
+      key: 'apps-reports-list',
+      path: `${APP_PREFIX_PATH}/apps/reports/list`,
+      title: 'sidenav.apps.reports.list',
+      icon: AuditOutlined,
+      breadcrumb: false,
+      submenu: []
+    },
 
   ]
 }]

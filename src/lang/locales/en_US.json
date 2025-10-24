@@ -10,5 +10,7 @@
 	"sidenav.usermanagement": "User Management",
 	"sidenav.usermangement.systemusers": "System Users",
 	"sidenav.usermangement.systemusers.rolemanagement": "Role Management",
-	"sidenav.usermanagement.userprofile": "User Profile"
+	"sidenav.usermanagement.userprofile": "User Profile",
+	"sidenav.apps.reports.list": "Reports"
+
 }
