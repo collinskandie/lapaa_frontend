@@ -19,6 +19,11 @@ export const publicRoutes = [
         component: React.lazy(() => import('views/auth-views/errors/error-page-1')),
     },
     {
+        key: 'self-register',
+        path: `${APP_PREFIX_PATH}/self-register`,
+        component: React.lazy(() => import('views/app-views/apps/youth/register/publicroute')),
+    },
+    {
         key: 'error-page-2',
         path: `${AUTH_PREFIX_PATH}/error-page-2`,
         component: React.lazy(() => import('views/auth-views/errors/error-page-2')),

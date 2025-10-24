@@ -22,7 +22,7 @@ const YouthRegistration = () => {
 
     // Ward, location, sub-location, Village
 
-    
+
 
     const onFinish = async (values) => {
         try {
@@ -304,8 +304,15 @@ const YouthRegistration = () => {
                         </Form.Item>
                     </Col>
                     <Col span={24}>
-                        <Form.Item name="careerGoals" label="Interests & Career Goals">
+                        {/* <Form.Item name="careerGoals" label="Interests & Career Goals">
                             <TextArea rows={3} placeholder="Describe your goals..." />
+                        </Form.Item> */}
+                        <Form.Item name="employmentStatus" label="Current Status" rules={[{ required: true }]}>
+                            <Select placeholder="Select status">
+                                <Option value="Employment">Seeking Employment</Option>
+                                <Option value="Business">Business</Option>
+                                <Option value="Labour Export">Labour Export</Option>
+                            </Select>
                         </Form.Item>
                     </Col>
                     <Col span={12}>

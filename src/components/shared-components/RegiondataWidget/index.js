@@ -11,13 +11,10 @@ import WorldMap from 'assets/maps/world-countries-sans-antarctica.json'
 import utils from 'utils'
 import { useNavigate } from "react-router-dom";
 import { AUTH_PREFIX_PATH, APP_PREFIX_PATH } from 'configs/AppConfig'
-
 const { useBreakpoint } = Grid;
 const geoUrl = WorldMap;
 const mapColor = '#F5F4F6';
 const hoverPercentage = -10;
-
-
 
 const getHighlightedRegion = (name, data) => {
 	if (data.length > 0 || name) {
