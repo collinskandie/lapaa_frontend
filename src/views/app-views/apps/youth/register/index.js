@@ -307,7 +307,7 @@ const YouthRegistration = () => {
                         <Form.Item name="employmentStatus" label="Current Interest" rules={[{ required: true }]}>
                             <Select placeholder="Select status">
                                 <Option value="Employment">Seeking Employment</Option>
-                                <Option value="Business">Business</Option>
+                                <Option value="Enterprenuership">Entrepreneurship</Option>
                                 <Option value="Labour Export">Labour Export</Option>
                             </Select>
                         </Form.Item>
