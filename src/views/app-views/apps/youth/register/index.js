@@ -15,11 +15,14 @@ const YouthRegistration = () => {
     const [current, setCurrent] = useState(0)
     const [form] = Form.useForm()
     const [loading, setLoading] = useState(false)
+    // const { name } = useParams();
 
     const next = () => setCurrent(current + 1)
     const prev = () => setCurrent(current - 1)
 
     // Ward, location, sub-location, Village
+
+    
 
     const onFinish = async (values) => {
         try {
@@ -98,7 +101,6 @@ const YouthRegistration = () => {
             setLoading(false)
         }
     }
-
     const steps = [
         {
             title: 'Personal Details',
@@ -324,7 +326,6 @@ const YouthRegistration = () => {
             ),
         },
     ]
-
     return (
         <>
             <PageHeaderAlt className="border-bottom">
@@ -373,5 +374,4 @@ const YouthRegistration = () => {
         </>
     )
 }
-
 export default YouthRegistration

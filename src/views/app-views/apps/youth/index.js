@@ -14,6 +14,7 @@ import { APP_PREFIX_PATH } from 'configs/AppConfig'
 import dayjs from "dayjs"
 import API from "services/Api"
 
+import { useParams } from "react-router-dom";
 const { Search } = Input
 
 const YouthList = () => {
@@ -24,6 +25,22 @@ const YouthList = () => {
     const [isModalVisible, setIsModalVisible] = useState(false)
     const [form] = Form.useForm()
     const navigate = useNavigate()
+    const { name } = useParams();
+
+    useEffect(() => {
+        if (name) {
+            setSearchText(name);
+        }
+    }, [name]);
+
+    useEffect(() => {
+        if (searchText) {
+            handleSearch(searchText);
+        }
+    }, [searchText]);
+
+
+
 
     useEffect(() => {
         const fetchYouths = async () => {

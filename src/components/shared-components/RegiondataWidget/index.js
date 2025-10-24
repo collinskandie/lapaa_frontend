@@ -2,24 +2,28 @@ import React, { useState } from 'react'
 import { Card, Row, Col, Badge, Grid } from 'antd';
 import PropTypes from 'prop-types'
 import {
-  ComposableMap,
-  Geographies,
-  Geography
+	ComposableMap,
+	Geographies,
+	Geography
 } from "react-simple-maps";
 import ReactTooltip from 'react-tooltip'
 import WorldMap from 'assets/maps/world-countries-sans-antarctica.json'
 import utils from 'utils'
+import { useNavigate } from "react-router-dom";
+import { AUTH_PREFIX_PATH, APP_PREFIX_PATH } from 'configs/AppConfig'
 
 const { useBreakpoint } = Grid;
 const geoUrl = WorldMap;
 const mapColor = '#F5F4F6';
 const hoverPercentage = -10;
 
+
+
 const getHighlightedRegion = (name, data) => {
-	if(data.length > 0 || name) {
+	if (data.length > 0 || name) {
 		for (let i = 0; i < data.length; i++) {
 			const elm = data[i];
-			if(name === elm.name) {
+			if (name === elm.name) {
 				return elm.color
 			}
 		}
@@ -29,10 +33,10 @@ const getHighlightedRegion = (name, data) => {
 }
 
 const getRegionHoverColor = (name, data) => {
-	if(data.length > 0 || name) {
+	if (data.length > 0 || name) {
 		for (let i = 0; i < data.length; i++) {
 			const elm = data[i];
-			if(name === elm.name) {
+			if (name === elm.name) {
 				return utils.shadeColor(elm.color, hoverPercentage)
 			}
 		}
@@ -42,10 +46,10 @@ const getRegionHoverColor = (name, data) => {
 }
 
 const getRegionValue = (name, data) => {
-	if(data.length > 0 || name) {
+	if (data.length > 0 || name) {
 		for (let i = 0; i < data.length; i++) {
 			const elm = data[i];
-			if(name === elm.name) {
+			if (name === elm.name) {
 				return `${elm.name} — ${elm.value}`
 			}
 		}
@@ -55,12 +59,12 @@ const getRegionValue = (name, data) => {
 }
 
 const MapChart = ({ setTooltipContent, data, mapSource, mapType }) => {
-  	return (
-		<ComposableMap style={{transform: `${mapType === 'world' ? 'translateY(20px)' : 'none'}`}} data-tip="" height={380} projectionConfig={{ scale: 145 }}>
+	return (
+		<ComposableMap style={{ transform: `${mapType === 'world' ? 'translateY(20px)' : 'none'}` }} data-tip="" height={380} projectionConfig={{ scale: 145 }}>
 			<Geographies geography={mapSource}>
 				{({ geographies }) =>
 					geographies.map(geo => {
-						const geoName = mapType === 'world' ? geo.properties.name : geo.properties.NAME_1 
+						const geoName = mapType === 'world' ? geo.properties.name : geo.properties.NAME_1
 						return (
 							<Geography
 								key={geo.rsmKey}
@@ -85,18 +89,25 @@ const MapChart = ({ setTooltipContent, data, mapSource, mapType }) => {
 				}
 			</Geographies>
 		</ComposableMap>
-    )
+	)
 }
 
 const Map = props => {
-	const { data, mapSource, mapType } = props
-	const [content, setContent] = useState("");
+	const { data, mapSource, mapType, onWardClick } = props
+	const [content, setContent] = useState("")
+
 	return (
-    <>
-      <MapChart data={data} mapSource={mapSource} mapType={mapType} setTooltipContent={setContent} />
-      <ReactTooltip>{content}</ReactTooltip>
-    </>
-  );
+		<>
+			<MapChart
+				data={data}
+				mapSource={mapSource}
+				mapType={mapType}
+				setTooltipContent={setContent}
+				onWardClick={onWardClick}
+			/>
+			<ReactTooltip>{content}</ReactTooltip>
+		</>
+	)
 }
 
 const renderDataList = data => {
@@ -112,23 +123,67 @@ const renderDataList = data => {
 	return list
 }
 
+// export const RegiondataWidget = props => {
+// 	const { data, mapSource, mapType, title, content, list } = props
+// 	const isMobile = !utils.getBreakPoint(useBreakpoint()).includes('lg')
+// 	return (
+// 		<Card bodyStyle={{padding: 0}}>
+// 			<Row>
+// 				<Col xs={24} sm={24} md={24} lg={7} className="border-right">
+// 					<div className="d-flex flex-column p-3 justify-content-between h-100">
+// 						<div>{title && <h4 className="font-weight-bold">{title}</h4>}</div>
+// 						<div>{content}</div>
+// 						<div>{list ? list : renderDataList(data)}</div>
+// 					</div>
+// 				</Col>
+// 				<Col xs={24} sm={24} md={24} lg={17}>
+// 					<div className="d-flex flex-column justify-content-center" style={{minHeight: isMobile ? 200 : 435 }}>
+// 						<div className="p-3 w-100" >
+// 							<Map data={data} mapSource={mapSource} mapType={mapType}/>
+// 						</div>
+// 					</div>
+// 				</Col>
+// 			</Row>
+// 		</Card>
+// 	)
+// }
 export const RegiondataWidget = props => {
-	const { data, mapSource, mapType, title, content, list } = props
-	const isMobile = !utils.getBreakPoint(useBreakpoint()).includes('lg')
+	const { data, mapSource, mapType, title, content, list, onWardClick } = props
+
+	console.log('RegiondataWidget data:', data)
+
+	const navigate = useNavigate();
+
+	const renderClickableList = (data) => (
+		<ul className="list-unstyled">
+			{data.map((item, i) => (
+				<li
+					key={i}
+					className="cursor-pointer text-primary"
+					style={{ cursor: "pointer" }}
+					onClick={() => navigate(`${APP_PREFIX_PATH}/apps/youth/register/${item.name}`)} // 🚀 Redirect activated
+				>
+					{item.name} — {item.value}
+				</li>
+			))}
+		</ul>
+	);
+
+
 	return (
-		<Card bodyStyle={{padding: 0}}>
+		<Card bodyStyle={{ padding: 0 }}>
 			<Row>
 				<Col xs={24} sm={24} md={24} lg={7} className="border-right">
 					<div className="d-flex flex-column p-3 justify-content-between h-100">
 						<div>{title && <h4 className="font-weight-bold">{title}</h4>}</div>
 						<div>{content}</div>
-						<div>{list ? list : renderDataList(data)}</div>
+						<div>{list ? list : renderClickableList(data)}</div>
 					</div>
 				</Col>
 				<Col xs={24} sm={24} md={24} lg={17}>
-					<div className="d-flex flex-column justify-content-center" style={{minHeight: isMobile ? 200 : 435 }}>
-						<div className="p-3 w-100" >
-							<Map data={data} mapSource={mapSource} mapType={mapType}/>
+					<div className="d-flex flex-column justify-content-center" style={{ minHeight: 435 }}>
+						<div className="p-3 w-100">
+							<Map data={data} mapSource={mapSource} mapType={mapType} />
 						</div>
 					</div>
 				</Col>
@@ -136,6 +191,7 @@ export const RegiondataWidget = props => {
 		</Card>
 	)
 }
+
 
 RegiondataWidget.propTypes = {
 	title: PropTypes.string,

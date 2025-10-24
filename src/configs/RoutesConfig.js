@@ -53,6 +53,11 @@ export const protectedRoutes = [
         component: React.lazy(() => import('views/app-views/apps/youth/register')),
     },
     {
+        key: 'apps.youth.register',
+        path: `${APP_PREFIX_PATH}/apps/youth/register/:name`,
+        component: React.lazy(() => import('views/app-views/apps/youth')),
+    },
+    {
         key: 'apps.youth.view',
         path: `${APP_PREFIX_PATH}/apps/youth/view/:id`,
         component: React.lazy(() => import('views/app-views/apps/youth/register/YouthDetailsView')),
