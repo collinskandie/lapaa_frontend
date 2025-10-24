@@ -172,7 +172,7 @@ const YouthList = () => {
             key: "ward",
         },
         {
-            title: "Career Level",
+            title: "Current Interest",
             key: "career_level",
             render: (_, record) => {
                 const employment = record.employment_history?.[0]
