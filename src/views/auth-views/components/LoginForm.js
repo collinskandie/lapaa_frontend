@@ -162,6 +162,11 @@ export const LoginForm = (props) => {
             <a href="/auth/forgot-password">Forgot Password?</a>
           </Col>
         </Row>
+        <Row>
+          <Col sm={24} md={24} lg={12}>
+            <a href="/app/self">Youth Registration Link</a>
+          </Col>
+        </Row>
         {/* Logo Section */}
         <div className="text-center mt-4">
           <p className="mt-2">Powered by HBL TecServe</p>

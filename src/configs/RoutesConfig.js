@@ -20,7 +20,7 @@ export const publicRoutes = [
     },
     {
         key: 'self-register',
-        path: `${APP_PREFIX_PATH}/self-register`,
+        path: `${APP_PREFIX_PATH}/self`,
         component: React.lazy(() => import('views/app-views/apps/youth/register/publicroute')),
     },
     {
